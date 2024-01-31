@@ -12,20 +12,22 @@ import { Euros } from "../lib/baseTypes";
 describe("calculateDeliveryFees", () => {
   it("should return 0 if free delivery is applicable", () => {
     const orderData = {
-      cartValue: 200,
+      cartValue: 20000,
       itemAmount: 5,
       deliveryDistance: 10,
       time: new Date(),
     };
     expect(calculateDeliveryFees(orderData)).toBe(0);
   });
+});
 
+describe("rushHourFee", () => {
   it("should calculate fees correctly without rush hour", () => {
     const orderData = {
-      cartValue: 50,
+      cartValue: 5000,
       itemAmount: 5,
       deliveryDistance: 1500,
-      time: new Date("2024-01-01T10:00:00"),
+      time: new Date("2024-01-25T10:00:00"),
     };
 
     const expectedFees =
@@ -37,12 +39,12 @@ describe("calculateDeliveryFees", () => {
 
   it("should calculate fees correctly with rush hour", () => {
     const orderData = {
-      cartValue: 50,
+      cartValue: 5000,
       itemAmount: 5,
       deliveryDistance: 1500,
-      time: new Date("2022-01-01T18:00:00"), // Assuming this time falls in rush hour
+      time: new Date("2024-01-26T18:00:00"),
     };
-    // Replace with the expected value based on your fee calculation logic
+
     const expectedFees =
       (applyMinCharge(orderData.cartValue) +
         applyBulkFee(orderData.itemAmount) +
@@ -50,24 +52,28 @@ describe("calculateDeliveryFees", () => {
       1.2;
     expect(calculateDeliveryFees(orderData)).toBe(expectedFees);
   });
+});
 
-  it("should not exceed maximum delivery fee", () => {
-    const orderData = {
-      cartValue: 10, // Assuming this value doesn't qualify for free delivery
-      itemAmount: 20,
-      deliveryDistance: 5000,
-      time: new Date("2022-01-01T18:00:00"), // Assuming this time falls in rush hour
-    };
-    expect(calculateDeliveryFees(orderData)).toBe(Euros.Fifteen);
-  });
-
+describe("isFreeDelivery", () => {
   it("should return true if free delivery is applicable", () => {
     const orderData = {
-      cartValue: 200,
+      cartValue: 20000,
       itemAmount: 5,
       deliveryDistance: 10,
       time: new Date(),
     };
-    expect(isFreeDelivery(orderData)).toBe(true);
+    expect(isFreeDelivery(orderData.cartValue)).toBe(true);
+  });
+});
+
+describe("doesNotExceedMaxFee", () => {
+  it("should not exceed maximum delivery fee", () => {
+    const orderData = {
+      cartValue: 1000,
+      itemAmount: 20,
+      deliveryDistance: 9000,
+      time: new Date("2024-01-26T18:00:00"),
+    };
+    expect(calculateDeliveryFees(orderData)).toBe(Euros.Fifteen);
   });
 });
