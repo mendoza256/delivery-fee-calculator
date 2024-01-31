@@ -18,8 +18,10 @@ npm run dev
 
 ## Running Tests
 
-To run the tests, you will need to have Node.js and npm installed on your machine. You will also need Jest, a JavaScript testing framework. If you haven't installed Jest yet, you can do so by running the following command in your terminal:
-
 ```bash
-npm install --save-dev jest
+npm test
 ```
+
+Thanks for coming to my ted talk,
+
+- Christian Graumann
