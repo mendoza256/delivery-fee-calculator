@@ -1,0 +1,10 @@
+label {
+  display: flex;
+  margin-bottom: 1rem;
+
+  input,
+  .react-datepicker-wrapper {
+    margin-left: auto;
+    padding-left: 1rem;
+  }
+}

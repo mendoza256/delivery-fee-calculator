@@ -1,8 +1,3 @@
-export type OrderType = {
-  name: string;
-  price: number;
-}[];
-
 export type RushHourType = {
   dayOfWeek: Days;
   startHour: number;
@@ -19,6 +14,20 @@ export enum Days {
   Saturday,
 }
 
-export enum MinimumFee {
-  TenEuros = 1000,
+export enum Euros {
+  One = 100,
+  OneTwenty = 120,
+  Two = 200,
+  Ten = 1000,
+  Fifteen = 1500,
+  TwoHundred = 20000,
+}
+
+export enum Cents {
+  Fifty = 50,
+}
+
+export enum Distance {
+  OneKm = 1000,
+  FiveHundredM = 500,
 }
