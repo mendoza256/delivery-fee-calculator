@@ -1,6 +1,11 @@
 # Delivery Fee Calculation Service
 
-This is my entry for the Wolt engineering internship 2024. I only saw the ad on Monday, so please go soft on me :P
+Delivery fee calculations for adjustable distances, adjusts calculations respecting:
+
+- bulk fees
+- distance
+- rush hour (Friday 3 - 7 pm)
+- free delivery if price over 200
 
 ## Running the project
 
@@ -21,7 +26,3 @@ npm run dev
 ```bash
 npm test
 ```
-
-Thanks for coming to my ted talk,
-
-- Christian Graumann
